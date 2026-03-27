@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SpeedCheck – Live Internet Speed Test</title>
+  <meta name="description" content="Test your live internet speed including download, upload, and ping right from your browser." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">⚡</div>
+      <span>SpeedCheck</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-text">
+      <h1>Live Internet Speed Test</h1>
+      <p>Measure your real-time download speed, upload speed, and network ping — no plugins required.</p>
+    </div>
+
+    <!-- Speedometer -->
+    <div class="speedometer-wrapper">
+      <div class="speedometer" id="speedometer">
+        <svg viewBox="0 0 200 120" class="gauge-svg">
+          <!-- Background arc -->
+          <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#1e2540" stroke-width="14" stroke-linecap="round"/>
+          <!-- Colored arc (progress) -->
+          <path id="gauge-arc" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#arcGradient)" stroke-width="14" stroke-linecap="round"
+            stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+          <defs>
+            <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#6c63ff"/>
+              <stop offset="100%" style="stop-color:#00d4ff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <!-- Needle -->
+        <div class="needle-container" id="needle-container">
+          <div class="needle" id="needle"></div>
+        </div>
+
+        <div class="speed-display">
+          <div class="speed-value" id="speed-value">0.0</div>
+          <div class="speed-unit" id="speed-unit">Mbps</div>
+          <div class="speed-label" id="speed-label">Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Button -->
+    <button class="btn-start" id="btn-start" onclick="startTest()">
+      <span class="btn-text">Start Test</span>
+      <span class="btn-icon">▶</span>
+    </button>
+
+    <!-- Phase Indicators -->
+    <div class="phases" id="phases">
+      <div class="phase-item" id="phase-ping">
+        <div class="phase-icon">📡</div>
+        <div class="phase-name">Ping</div>
+        <div class="phase-value" id="val-ping">– ms</div>
+      </div>
+      <div class="phase-item" id="phase-download">
+        <div class="phase-icon">⬇️</div>
+        <div class="phase-name">Download</div>
+        <div class="phase-value" id="val-download">– Mbps</div>
+      </div>
+      <div class="phase-item" id="phase-upload">
+        <div class="phase-icon">⬆️</div>
+        <div class="phase-name">Upload</div>
+        <div class="phase-value" id="val-upload">– Mbps</div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-wrapper" id="progress-wrapper">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-text" id="progress-text">Initializing…</div>
+    </div>
+
+    <!-- Results Card -->
+    <div class="results-card" id="results-card">
+      <h2>Your Results</h2>
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="r-label">📡 Ping</div>
+          <div class="r-val" id="r-ping">–</div>
+          <div class="r-unit">ms</div>
+        </div>
+        <div class="result-item highlight">
+          <div class="r-label">⬇️ Download</div>
+          <div class="r-val" id="r-download">–</div>
+          <div class="r-unit">Mbps</div>
+        </div>
+        <div class="result-item">
+          <div class="r-label">⬆️ Upload</div>
+          <div class="r-val" id="r-upload">–</div>
+          <div class="r-unit">Mbps</div>
+        </div>
+      </div>
+      <div class="rating" id="speed-rating"></div>
+      <button class="btn-retest" onclick="resetTest()">🔄 Test Again</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Results may vary based on network conditions and browser limitations. &copy; 2024 SpeedCheck</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
